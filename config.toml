@@ -1,0 +1,39 @@
+# The URL the site will be built for
+base_url = "https://blog.ibra.pk"
+theme = "zerm"
+
+default_language = "en"
+generate_feed = true
+
+compile_sass = true
+
+highlight_code = true
+highlight_theme = "axar"
+
+build_search_index = true
+
+title = "Ibra's Notebook"
+
+taxonomies = [{ name = "tags" }, { name = "categories" }]
+
+show_author = false
+show_categories = true
+show_tags = true
+
+show_menu_items = 2
+
+# set theme to full screen width.
+full_width = false
+
+
+[extra]
+author = "Ibrahim"
+theme_color = "pale"
+main_menu = []
+show_author = false
+show_categories = true
+show_tags = true
+read_more = "continue reading..."
+center = true
+logo_text = "ibra's notebook"
+logo_home_link = "/"
