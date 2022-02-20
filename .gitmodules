@@ -1,3 +1,3 @@
-[submodule "themes/themes/zerm"]
-	path = themes/themes/zerm
+[submodule "themes/zerm"]
+	path = themes/zerm
 	url = https://github.com/ejmg/zerm
