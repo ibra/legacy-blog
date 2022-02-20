@@ -1,5 +1,5 @@
 on: push
-name: Build and deploy GH Pages
+name: Deploy page
 jobs:
   build:
     runs-on: ubuntu-latest
