@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://blog.ibra.pk"
+base_url = "https://ibra.github.io"
 theme = "zerm"
 
 default_language = "en"
@@ -10,7 +10,6 @@ compile_sass = true
 highlight_code = true
 highlight_theme = "axar"
 
-build_search_index = true
 
 title = "Ibra's Notebook"
 
