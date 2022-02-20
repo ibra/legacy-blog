@@ -6,7 +6,7 @@ date = 2021-01-17
 
 [taxonomies]
 tags = ["yourshot", "tutorial"]
-categories = ["yourshot"]
+categories = ["Ramble"]
 [extra]
 +++
 

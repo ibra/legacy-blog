@@ -8,7 +8,7 @@ author = "Ibrahim"
 
 [taxonomies]
 tags = ["ramble", "web3"]
-categories = ["yourshot"]
+categories = ["Ramble"]
 +++
 
 There has been a lot of hype surrounding the whole Web3 space as of late, whether that be from <!-- more --> the metaverse, NFTs or cryptocurrency. In a way, web3 seems to suggest that it is trying to bring the internet back to its decentralized roots, and while I agree decentralization is nice, there is no material technological advancement or really any benefit at all that has really quantifiably been had. NFTs are being integrated into products that least require them, and the only real reason for it to benefit the people at the top reeling in more investors drawn by these wishful-at-best buzzwords.

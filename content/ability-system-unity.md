@@ -8,7 +8,7 @@ author = "Ibrahim"
 
 [taxonomies]
 tags = ["yourshot", "tutorial"]
-categories = ["yourshot"]
+categories = ["YourShot"]
 +++
 
 Over the past few days, ive been working on _YourShot's_ Ability system. I tried looking online and theres not really enough <!-- more --> information for a newbie to make an informed decision about how they should approach going about this. In the end I personally settled on a mix of inheritance and scriptable objects. The two objectives for this Ability System for me personally were:

@@ -8,7 +8,7 @@ author = "Ibrahim"
 
 [taxonomies]
 tags = ["rust"]
-categories = ["yourshot"]
+categories = ["Ramble"]
 +++
 
 Rust is the most fun I've had programming in a long, long time, and I'm super excited to see what the future holds for it <!-- more -->, with [WebAssembly](https://webassembly.org/) becoming even more widely adopted and it being called the most loved programming language according to the StackOverflow Developer survey of 2021.

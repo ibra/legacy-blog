@@ -8,7 +8,7 @@ author = "Ibrahim"
 
 [taxonomies]
 tags = ["ibreview", "arcane"]
-categories = ["yourshot"]
+categories = ["Ibreview"]
 +++
 
 I finished Arcane _(twice)_ last month, and I can confidently say it is the best show i watched in 2021, and probably <!-- more --> one that will live in my mind for years to come. There is a lot that makes Arcane stand out, from its excellent cinematography to its beautifully choreographed action scenes, as well as the well-written characters with depth and purpose behind them. This review is **spoiler-free** but to be honest, I still recommend going into this show completely blind if you're already interested.

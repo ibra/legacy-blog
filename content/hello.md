@@ -8,7 +8,7 @@ author = "Ibrahim"
 
 [taxonomies]
 tags = ["meta"]
-categories = ["yourshot"]
+categories = ["Meta"]
 +++
 
 So uh yeah, I have a blog now, let's see how this goes. 
