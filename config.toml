@@ -28,7 +28,7 @@ full_width = false
 
 [extra]
 author = "Ibrahim"
-theme_color = "pale"
+theme_color = "green"
 main_menu = []
 show_author = false
 show_categories = true
