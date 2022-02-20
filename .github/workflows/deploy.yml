@@ -12,5 +12,4 @@ jobs:
         env:
           # Target branch
           PAGES_BRANCH: gh-pages
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
