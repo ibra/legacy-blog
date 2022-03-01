@@ -1,5 +1,6 @@
 +++
 title = "Arcane Season 1: Redefining Videogame Adaptations"
+description = "Arcane was one of the best shows I watched in 2021. So... what makes it so special?"
 date = 2022-01-05
 category = "Ibrview"
 

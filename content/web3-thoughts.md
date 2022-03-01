@@ -1,5 +1,6 @@
 +++
 title = "Web3 and The \"Future of The Internet\""
+description = "Sharing some brief thoughts on Web3.0 and the supposed future of the internet."
 category = "Ramble"
 date = 2022-02-20
 
