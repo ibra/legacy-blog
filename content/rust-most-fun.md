@@ -1,6 +1,5 @@
 +++
 title = "Rust Is The Most Fun I've Had Programming In Ages"
-description = "Just checking in."
 category = "Ramble"
 date = 2021-10-30
 
