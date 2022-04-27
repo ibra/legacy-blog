@@ -1,38 +1,33 @@
-# The URL the site will be built for
 base_url = "https://ibra.github.io"
-theme = "zerm"
+theme = "terminimal"
+
+title = "ibra after dark"
 
 default_language = "en"
-generate_feed = true
-
 compile_sass = true
 
+[markdown]
 highlight_code = true
-highlight_theme = "axar"
-
-
-title = "Ibra's Notebook"
-
-taxonomies = [{ name = "tags" }, { name = "categories" }]
-
-show_author = false
-show_categories = true
-show_tags = true
-
-show_menu_items = 2
-
-# set theme to full screen width.
-full_width = false
-
+highlight_theme = "base16-ocean-dark"
 
 [extra]
 author = "Ibrahim"
-theme_color = "green"
-main_menu = []
-show_author = false
-show_categories = true
-show_tags = true
-read_more = "continue reading..."
-center = true
-logo_text = "ibra's notebook"
-logo_home_link = "/"
+
+taxonomies = [{ name = "categories" }]
+
+accent_color = "green"
+background_color = "dark"
+
+logo_text = "ibra after dark"
+copyright_html = "©&nbsp;2022&nbsp; <a href=\"https://github.com/ibra\"><b>Ibrahim Hisham</b></a>|&nbsp;<a href=\"https://www.getzola.org/\">Zola</a>&nbsp;is&nbsp;epic 🧡"
+post_view_navigation_prompt = "More from me"
+
+favicon = "/favicon-32x32.png"
+favicon_mimetype = "image/png"
+
+menu_items = [
+    # { name = "<- return to main", url = "https://google.com" },
+    { name = "home", url = "$BASE_URL" },
+    { name = "archive", url = "$BASE_URL/archive" },
+    { name = "github", url = "https://github.com/ibra", newtab = true },
+]

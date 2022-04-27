@@ -5,7 +5,6 @@ description = "A quick brief on how I added save points to YourShot"
 date = 2021-01-17
 
 [taxonomies]
-tags = ["yourshot", "tutorial"]
 categories = ["YourShot"]
 [extra]
 +++

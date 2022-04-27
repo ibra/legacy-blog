@@ -1,13 +1,11 @@
 +++
 title = "How I Made YourShot's Ability System In Unity"
-category = "YourShot"
 date = 2020-12-21
 
 [extra]
 author = "Ibrahim"
 
 [taxonomies]
-tags = ["yourshot", "tutorial"]
 categories = ["YourShot"]
 +++
 

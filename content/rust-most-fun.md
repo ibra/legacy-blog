@@ -1,13 +1,11 @@
 +++
 title = "Rust Is The Most Fun I've Had Programming In Ages"
-category = "Ramble"
 date = 2021-10-30
 
 [extra]
 author = "Ibrahim"
 
 [taxonomies]
-tags = ["rust"]
 categories = ["Ramble"]
 +++
 
@@ -23,7 +21,7 @@ A lot of my programmer friends have been using Rust for a while, it always looke
 
 However, after using it for a few projects, the Rust syntax has quickly grown to become the one I most love out of everything I've ever used. ~~Also holy shit match expressions are so based.~~
 
-```rs
+```rust
 fn fizzbuzz (number: u32) -> String {
     match (number % 3, number % 5) {
         (0, 0) => "fizzbuzz".to_string(),
