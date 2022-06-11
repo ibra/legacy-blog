@@ -22,7 +22,7 @@ logo_text = "ibra after dark"
 copyright_html = "©&nbsp;2022&nbsp; <a href=\"https://github.com/ibra\"><b>Ibrahim Hisham</b></a>|&nbsp;<a href=\"https://www.getzola.org/\">Zola</a>&nbsp;is&nbsp;epic 🧡"
 post_view_navigation_prompt = "More from me"
 
-favicon = "/favicon-32x32.png"
+favicon = "/favicon.png"
 favicon_mimetype = "image/png"
 
 menu_items = [
