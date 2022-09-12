@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ibra after dark</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://ibra.github.io/style.css">
+    <link rel="stylesheet" href="https://ibra.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://ibra.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://ibra.github.io/font-hack-subset.css">
+
+        <link rel="shortcut icon" type="image&#x2F;png" href="/favicon.png">
+    
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://ibra.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            ibra after dark
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        
+                <nav class="menu">
+            <ul class="menu__inner">
+                <li class="active"><a href="https://ibra.github.io">home</a></li>
+            
+                <li><a href="https://ibra.github.io/archive">archive</a></li>
+            
+                <li><a href="https://github.com/ibra" target="_blank" rel="noopener noreferrer">github</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://ibra.github.io/yourshot-save-points/">How I Added Save Points to YourShot</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2021-01-17
+        </span>
+
+    </div>
+
+    
+
+        
+        <div class="post-content">
+            <p>The time has come to add a proper method of saving to <em>YourShot</em>. <span id="continue-reading"></span></p>
+<p>Previously i had been using the Pause Menu to allow for saving, but I feel like it just doesnt fit the game, and also breaks immersion for a while when you're opening a menu, completely freezing the game, and then pressing save. I looked into a bunch of approaches. <a href="https://www.youtube.com/watch?v=PJZByWHtzb8&amp;ab_channel=NakeyJakey">This video in particular</a> was especially helpful. I wrote down most approaches that I saw, and heres a list:</p>
+<ul>
+<li>Autosaving</li>
+<li>Manual Saving Anytime, Anywhere</li>
+<li>Autosaving + Manual Saving</li>
+<li>Auto Manual Saving Prompts</li>
+<li>Quicksaves</li>
+<li>Save Rooms</li>
+<li>Save Points</li>
+</ul>
+<p>And the one that really caught my eye were save points. Something about the feeling when you have to face off multiple encounters without saving when the next save point is to the end of the level/room is just something that I felt like would make for an enjoyable experience. But like most other manual saving options, this one can be very annoying if not done right. I stumbled upon <a href="https://www.resetera.com/threads/save-points-in-games-examples-of-great-and-poor-execution.17575/">this thread</a> that had a variety of examples of save points executed well, and uh... not so well.</p>
+<p><strong>My key takeaway from this thread</strong> was that while big flashing odd-looking out of place saves may make themselves easier to find, most people don't seem to like them very much. I recalled that I had recently implemented a choice system for YourShot already, so why not use that, and enable you to interact with a Save Point that shows information on your current whereabouts and whatnot, and ofcourse allows you to save the game. So, lets get right to it!</p>
+<p>First, I needed a Sprite for the save point, so I made this weirdish spr-ite that gets darker each frame, before looping back. It actually turned out alright in game though.<img src="https://i.ibb.co/QN95WtX/savepoint.png" alt="Save Point Image" /></p>
+<p>Next, I used the choice system that i had recently made for setting up a dialogue for the save point interaction. Heres how it looks in game:
+<img src="https://i.ibb.co/nQBX0mC/Epic.gif" alt="Dialogue Interaction" /></p>
+<p>Then I just needed to do some backend stuff like hooking the savepoints <code>OnDialogueEnd</code> event to a <code>GameManager.Save()</code> function.</p>
+<p>And yeah that was about it! I turned this save point into a <a href="https://docs.unity3d.com/Manual/Prefabs.html">Unity Prefab</a> and now I can populate my levels with save points.</p>
+<p>I want to keep a healthy balance of save points for YourShot. I dont want them to be too scarce, but I also want to make it a challenge to reach them. For frequency its gonna be somewhere from an <em>Undertale Savepoint</em> to a <em>Dark Souls Bonfire</em>.</p>
+<p>That was about it for now, I really want to get to work now on implementing a unique health system as well as some fun combat, and thats probably what im gonna work on next.</p>
+<p>I currently have exams that'll probably last around like 2 weeks, so I wont really get much time to work on the game at all, but I try to jot down any ideas i have, and they're pretty pog not gonna lie.
+<img src="https://i.ibb.co/PTjt73R/789549358080720916.png" alt="PeepoSmug" /></p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">More from me</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://ibra.github.io/rust-most-fun/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Rust Is The Most Fun I&#x27;ve Had Programming In Ages</span>
+                        </a>
+                    </span>
+                
+                
+                    <span class="button next">
+                        <a href="https://ibra.github.io/ability-system-unity/">
+                            <span class="button__text">How I Made YourShot&#x27;s Ability System In Unity</span>&nbsp;
+                            <span class="button__icon">→</span>
+                        </a>
+                    </span>
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">©&nbsp;2022&nbsp; <a href="https://github.com/ibra"><b>Ibrahim Hisham</b></a>|&nbsp;<a href="https://www.getzola.org/">Zola</a>&nbsp;is&nbsp;epic 🧡</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

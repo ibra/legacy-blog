@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ibra after dark</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://ibra.github.io/style.css">
+    <link rel="stylesheet" href="https://ibra.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://ibra.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://ibra.github.io/font-hack-subset.css">
+
+        <link rel="shortcut icon" type="image&#x2F;png" href="/favicon.png">
+    
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://ibra.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            ibra after dark
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        
+                <nav class="menu">
+            <ul class="menu__inner">
+                <li class="active"><a href="https://ibra.github.io">home</a></li>
+            
+                <li><a href="https://ibra.github.io/archive">archive</a></li>
+            
+                <li><a href="https://github.com/ibra" target="_blank" rel="noopener noreferrer">github</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://ibra.github.io/ability-system-unity/">How I Made YourShot&#x27;s Ability System In Unity</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2020-12-21
+        </span>
+
+    </div>
+
+    
+
+        
+        <div class="post-content">
+            <p>Over the past few days, ive been working on <em>YourShot's</em> Ability system. I tried looking online and theres not really enough <span id="continue-reading"></span> information for a newbie to make an informed decision about how they should approach going about this. In the end I personally settled on a mix of inheritance and scriptable objects. The two objectives for this Ability System for me personally were:</p>
+<ul>
+<li>Making sure that any sort of ability can be created with the system.</li>
+<li>Making sure that these abilities can be created efficiently and without refactoring.</li>
+</ul>
+<p>Before I jump in though, I wanted to say that this is <strong>not</strong> a step-by-step tutorial. Its more an abstracted version of my approach (even though it will still have a detailed explanation) so you can have a general idea of how to approach making an Ability System.</p>
+<h2 id="code-structure">Code Structure</h2>
+<p>First of all we shall need an <code>Ability.cs</code> class.</p>
+<pre data-lang="cs" style="background-color:#2b303b;color:#c0c5ce;" class="language-cs "><code class="language-cs" data-lang="cs"><span style="color:#b48ead;">using </span><span>UnityEngine;
+</span><span style="color:#b48ead;">using </span><span>System.Collections;
+</span><span>
+</span><span style="color:#b48ead;">namespace </span><span>YourShot.AbilitySystem
+</span><span>{
+</span><span>    </span><span style="color:#b48ead;">public abstract class </span><span style="color:#ebcb8b;">Ability </span><span style="color:#eff1f5;">: </span><span style="color:#a3be8c;">ScriptableObject
+</span><span style="color:#eff1f5;">    {
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">public string </span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">New Ability</span><span>&quot;</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">public </span><span style="color:#eff1f5;">Sprite </span><span style="color:#bf616a;">sprite</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">public </span><span style="color:#eff1f5;">AudioClip </span><span style="color:#bf616a;">sound</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">public float </span><span style="color:#bf616a;">baseCoolDown </span><span>= </span><span style="color:#d08770;">1</span><span style="color:#b48ead;">f</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">public abstract void </span><span style="color:#8fa1b3;">Initialize</span><span style="color:#eff1f5;">(GameObject </span><span style="color:#bf616a;">obj</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">public abstract void </span><span style="color:#8fa1b3;">TriggerAbility</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span>}
+</span></code></pre>
+<p>You might or might not understand some stuff right off the bat, so let me explain.
+First of all, this line:</p>
+<pre data-lang="cs" style="background-color:#2b303b;color:#c0c5ce;" class="language-cs "><code class="language-cs" data-lang="cs"><span style="color:#b48ead;">public abstract class </span><span style="color:#ebcb8b;">Ability </span><span style="color:#eff1f5;">: </span><span style="color:#a3be8c;">ScriptableObject
+</span></code></pre>
+<p>This class is basically deriving from ScriptableObject. If you dont know what a ScriptableObject is, I'd recommend watching <a href="https://www.youtube.com/watch?v=aPXvoWVabPY">this video</a> from Brackeys. If you know a bit about scriptable objects you might be wondering why we <strong>aren't</strong> using the CreateAssetMenu attribute.</p>
+<p>e.g:</p>
+<pre data-lang="cs" style="background-color:#2b303b;color:#c0c5ce;" class="language-cs "><code class="language-cs" data-lang="cs"><span>[</span><span style="color:#bf616a;">CreateAssetMenu</span><span>(&quot;</span><span style="color:#a3be8c;">Abilities/Ability</span><span>&quot;)]
+</span></code></pre>
+<p>That is because we will be using this attribute in our <strong>derived</strong> classes for different abilities, since the system wouldnt really work if we used it in our abstract class.</p>
+<p>Speaking of abstract, an <code>abstract</code> class is basically a restricted class that cannot be used to create objects, and the only way to access is, inheriting it from another class. The rest of the script is pretty self-explanatory, other than</p>
+<pre data-lang="cs" style="background-color:#2b303b;color:#c0c5ce;" class="language-cs "><code class="language-cs" data-lang="cs"><span style="color:#b48ead;">public abstract void </span><span style="color:#8fa1b3;">Foo</span><span>();
+</span></code></pre>
+<p>An abstract void is basically a method that does not have a body. The body is &quot;filled in&quot; by the derived class.</p>
+<p>This as of now, is just an abstract class. We're gonna create some simple derived classes in a bit.</p>
+<p>Next, we're going to use Unity's Input System to do trigger our abilities whenever we press a button. I'm using Unity's New Input System, so this is what my ability triggering script looks like.</p>
+<pre data-lang="cs" style="background-color:#2b303b;color:#c0c5ce;" class="language-cs "><code class="language-cs" data-lang="cs"><span style="color:#b48ead;">public class </span><span style="color:#ebcb8b;">PlayerAbility </span><span style="color:#eff1f5;">: </span><span style="color:#a3be8c;">MonoBehaviour
+</span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    [</span><span style="color:#bf616a;">SerializeField</span><span style="color:#eff1f5;">] </span><span style="color:#b48ead;">private </span><span style="color:#eff1f5;">Ability </span><span style="color:#bf616a;">primaryAbility</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    [</span><span style="color:#bf616a;">SerializeField</span><span style="color:#eff1f5;">] </span><span style="color:#b48ead;">private </span><span style="color:#eff1f5;">Ability </span><span style="color:#bf616a;">secondaryAbility</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">private </span><span style="color:#eff1f5;">PlayerControls </span><span style="color:#bf616a;">playerControls</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;"> </span><span style="color:#b48ead;">private void </span><span style="color:#8fa1b3;">Awake</span><span style="color:#eff1f5;">()
+</span><span style="color:#eff1f5;"> {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">playerControls </span><span>= new </span><span style="color:#eff1f5;">PlayerControls();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;"> </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">Start</span><span style="color:#eff1f5;">()
+</span><span style="color:#eff1f5;">    {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">primaryAbility</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">Initialize</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">gameObject</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">secondaryAbility</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">Initialize</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">gameObject</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">playerControls</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">Main</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">PrimaryAbility</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">performed </span><span>+= </span><span style="color:#bf616a;">_ </span><span style="color:#b48ead;">=&gt;   </span><span style="color:#bf616a;">primaryAbility</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">TriggerAbility</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">playerControls</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">Main</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">SecondaryAbility</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">performed </span><span>+= </span><span style="color:#bf616a;">_ </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">secondaryAbility</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">TriggerAbility</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">private void </span><span style="color:#8fa1b3;">OnEnable</span><span style="color:#eff1f5;">()
+</span><span style="color:#eff1f5;">    {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">playerControls</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">Enable</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">private void </span><span style="color:#8fa1b3;">OnDisable</span><span style="color:#eff1f5;">()
+</span><span style="color:#eff1f5;">    {
+</span><span style="color:#eff1f5;">        </span><span style="color:#bf616a;">playerControls</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">Disable</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">}
+</span></code></pre>
+<p>However, if you're using Unity's Old Input System just replace these:</p>
+<pre data-lang="cs" style="background-color:#2b303b;color:#c0c5ce;" class="language-cs "><code class="language-cs" data-lang="cs"><span style="color:#bf616a;">playerControls</span><span>.</span><span style="color:#bf616a;">Main</span><span>.</span><span style="color:#bf616a;">PrimaryAbility</span><span>.</span><span style="color:#bf616a;">performed </span><span>+= </span><span style="color:#bf616a;">_ </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">primaryAbility</span><span>.</span><span style="color:#bf616a;">TriggerAbility</span><span>();
+</span></code></pre>
+<p>with this (but make sure its in Update, not Start):</p>
+<pre data-lang="cs" style="background-color:#2b303b;color:#c0c5ce;" class="language-cs "><code class="language-cs" data-lang="cs"><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">Input</span><span>.</span><span style="color:#bf616a;">GetButton</span><span>(&quot;</span><span style="color:#a3be8c;">PrimaryButton</span><span>&quot;)
+</span><span>{
+</span><span>  </span><span style="color:#bf616a;">primaryAbility</span><span>.</span><span style="color:#bf616a;">TriggerAbility</span><span>();
+</span><span>}
+</span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">Input</span><span>.</span><span style="color:#bf616a;">GetButton</span><span>(&quot;</span><span style="color:#a3be8c;">SecondaryButton</span><span>&quot;)
+</span><span>{
+</span><span>  </span><span style="color:#bf616a;">secondaryAbility</span><span>.</span><span style="color:#bf616a;">TriggerAbility</span><span>();
+</span><span>}
+</span></code></pre>
+<p>So this is cool and all, but we cant really assign abstract classes to the inspector. So we need to create some... <strong>D e r i v e d</strong> Classes. We still want these classes to be as vague as possible, so as to be able to create more Abilities with less coding, because imagine actually doing effort.</p>
+<p>So lets make a simple projectile ability.</p>
+<pre data-lang="cs" style="background-color:#2b303b;color:#c0c5ce;" class="language-cs "><code class="language-cs" data-lang="cs"><span style="color:#b48ead;">using </span><span>UnityEngine;
+</span><span style="color:#b48ead;">using </span><span>System.Collections;
+</span><span>
+</span><span style="color:#b48ead;">namespace </span><span>YourShot.AbilitySystem
+</span><span>{
+</span><span>
+</span><span> [</span><span style="color:#bf616a;">CreateAssetMenu</span><span>(</span><span style="color:#bf616a;">menuName </span><span>= &quot;</span><span style="color:#a3be8c;">Abilities/ProjectileAbility</span><span>&quot;)]
+</span><span> </span><span style="color:#b48ead;">public class </span><span style="color:#ebcb8b;">ProjectileAbility </span><span style="color:#eff1f5;">: </span><span style="color:#a3be8c;">Ability
+</span><span style="color:#eff1f5;"> {
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public float </span><span style="color:#bf616a;">projectileForce </span><span>= </span><span style="color:#d08770;">500</span><span style="color:#b48ead;">f</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public </span><span style="color:#eff1f5;">Rigidbody </span><span style="color:#bf616a;">projectile</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">private </span><span style="color:#eff1f5;">ProjectileShootTriggerable </span><span style="color:#bf616a;">weapon</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public override void </span><span style="color:#8fa1b3;">Initialize</span><span style="color:#eff1f5;">(GameObject </span><span style="color:#bf616a;">obj</span><span style="color:#eff1f5;">)
+</span><span style="color:#eff1f5;">  {
+</span><span style="color:#eff1f5;">   </span><span style="color:#bf616a;">weapon </span><span>= </span><span style="color:#bf616a;">obj</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">GetComponent</span><span style="color:#eff1f5;">&lt;ProjectileShootTriggerable&gt;();
+</span><span style="color:#eff1f5;">   </span><span style="color:#bf616a;">weapon</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">projectileForce </span><span>= </span><span style="color:#bf616a;">projectileForce</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">   </span><span style="color:#bf616a;">weapon</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">projectile </span><span>= </span><span style="color:#bf616a;">projectile</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public override void </span><span style="color:#8fa1b3;">TriggerAbility</span><span style="color:#eff1f5;">()
+</span><span style="color:#eff1f5;">  {
+</span><span style="color:#eff1f5;">   </span><span style="color:#bf616a;">weapon</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">TriggerFire</span><span style="color:#eff1f5;">();
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;"> }
+</span><span>
+</span><span>}
+</span></code></pre>
+<p>So, this is our ProjectileAbility class. If you have keen eye, you might've noticed that we have this script called <code>ProjectileShootTriggerable</code>. Whats that all about? I'll get to it in a moment. But first, let me explain what is going on in this script.</p>
+<p>First and foremost, we have our <code>ProjectileAbility</code> class which derives from <code>Ability</code> with a <code>CreateAssetMenu</code> attribute that we can use to create SerializeObjects in the Projects folder.</p>
+<p>Then we have 2 <code>override</code> methods, which if you didn't notice have the same name as the methods in our original <code>Ability.cs</code> abstracted class. Basically we are overriding (as the keyword suggests) our original abstract methods, basically filling in their body.</p>
+<p>Now, lets go back to that script you saw earlier called <code>ProjectileShootTriggerable</code> that is referenced in our <code>ProjectileAbility.cs</code> script. Here are the contents of that script:</p>
+<pre data-lang="cs" style="background-color:#2b303b;color:#c0c5ce;" class="language-cs "><code class="language-cs" data-lang="cs"><span style="color:#b48ead;">using </span><span>UnityEngine;
+</span><span style="color:#b48ead;">using </span><span>System.Collections;
+</span><span>
+</span><span style="color:#b48ead;">public class </span><span style="color:#ebcb8b;">ProjectileShootTriggerable </span><span style="color:#eff1f5;">: </span><span style="color:#a3be8c;">MonoBehaviour
+</span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;"> [</span><span style="color:#bf616a;">HideInInspector</span><span style="color:#eff1f5;">] </span><span style="color:#b48ead;">public </span><span style="color:#eff1f5;">Rigidbody </span><span style="color:#bf616a;">projectile</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">    [</span><span style="color:#bf616a;">HideInInspector</span><span style="color:#eff1f5;">] </span><span style="color:#b48ead;">public float </span><span style="color:#bf616a;">projectileForce </span><span>= </span><span style="color:#d08770;">250</span><span style="color:#b48ead;">f</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;"> </span><span style="color:#b48ead;">public </span><span style="color:#eff1f5;">Transform </span><span style="color:#bf616a;">bulletSpawn</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;"> </span><span style="color:#b48ead;">public void </span><span style="color:#8fa1b3;">Launch</span><span style="color:#eff1f5;">()
+</span><span style="color:#eff1f5;"> {
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  Rigidbody </span><span style="color:#bf616a;">bulletInstance </span><span>= </span><span style="color:#bf616a;">Instantiate</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">projectile</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">bulletSpawn</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">position</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">transform</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">rotation</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  </span><span style="color:#bf616a;">clonedBullet</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">AddForce</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">bulletSpawn</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">transform</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">forward </span><span>* </span><span style="color:#bf616a;">projectileForce</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;"> }
+</span><span style="color:#eff1f5;">}
+</span></code></pre>
+<p>You should apply this script to your Gun/Cannon/Firearm/Mass Weapon of Destruction</p>
+<p>Then create a new Ability by Right Clicking on the Project folder, and you should be set. Like i said before, this wasn't really a complete step-by-step tutorial, but if you are intermediate, or know your way around C#, you should now (hopefully) have an idea as to how you should approach making an Ability System. If you are still facing issues though I have my socials on the home page of this blog, and you can contact me from there.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">More from me</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://ibra.github.io/yourshot-save-points/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">How I Added Save Points to YourShot</span>
+                        </a>
+                    </span>
+                
+                
+                    <span class="button next">
+                        <a href="https://ibra.github.io/hello/">
+                            <span class="button__text">Hello!</span>&nbsp;
+                            <span class="button__icon">→</span>
+                        </a>
+                    </span>
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">©&nbsp;2022&nbsp; <a href="https://github.com/ibra"><b>Ibrahim Hisham</b></a>|&nbsp;<a href="https://www.getzola.org/">Zola</a>&nbsp;is&nbsp;epic 🧡</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

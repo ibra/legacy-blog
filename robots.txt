@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ibra.github.io/sitemap.xml

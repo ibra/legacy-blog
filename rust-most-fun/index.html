@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ibra after dark</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://ibra.github.io/style.css">
+    <link rel="stylesheet" href="https://ibra.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://ibra.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://ibra.github.io/font-hack-subset.css">
+
+        <link rel="shortcut icon" type="image&#x2F;png" href="/favicon.png">
+    
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://ibra.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            ibra after dark
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        
+                <nav class="menu">
+            <ul class="menu__inner">
+                <li class="active"><a href="https://ibra.github.io">home</a></li>
+            
+                <li><a href="https://ibra.github.io/archive">archive</a></li>
+            
+                <li><a href="https://github.com/ibra" target="_blank" rel="noopener noreferrer">github</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://ibra.github.io/rust-most-fun/">Rust Is The Most Fun I&#x27;ve Had Programming In Ages</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2021-10-30
+        </span>
+
+    </div>
+
+    
+
+        
+        <div class="post-content">
+            <p>Rust is the most fun I've had programming in a long, long time, and I'm super excited to see what the future holds for it <span id="continue-reading"></span>, with <a href="https://webassembly.org/">WebAssembly</a> becoming even more widely adopted and it being called the most loved programming language according to the StackOverflow Developer survey of 2021.</p>
+<p><img src="https://ibrahim.is-terrible.com/5e9WlZekE.png" alt="Stack Overflow Survey" /></p>
+<p>I would consider myself a Rust beginner at best, but this language is so damn fun that I'm actively looking for excuses to make any project idea that I have in it.</p>
+<h2 id="background">Background</h2>
+<p>A lot of my programmer friends have been using Rust for a while, it always looked kind of weird to me as someone coming from a high-level C# and Javascript background, things like the lack of ternary and other choices with the syntax make it look odd to the occasional onlooker.</p>
+<p>However, after using it for a few projects, the Rust syntax has quickly grown to become the one I most love out of everything I've ever used. <del>Also holy shit match expressions are so based.</del></p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">fizzbuzz </span><span>(</span><span style="color:#bf616a;">number</span><span>: </span><span style="color:#b48ead;">u32</span><span>) -&gt; String {
+</span><span>    </span><span style="color:#b48ead;">match </span><span>(number % </span><span style="color:#d08770;">3</span><span>, number % </span><span style="color:#d08770;">5</span><span>) {
+</span><span>        (</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>) =&gt; &quot;</span><span style="color:#a3be8c;">fizzbuzz</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        (</span><span style="color:#d08770;">0</span><span>, _) =&gt; &quot;</span><span style="color:#a3be8c;">fizz</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        (_, </span><span style="color:#d08770;">0</span><span>) =&gt; &quot;</span><span style="color:#a3be8c;">buzz</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        (_, _) =&gt; number.</span><span style="color:#96b5b4;">to_string</span><span>()
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>Recently, I made a <a href="https://github.com/ibra/philososhark-rs">discord bot in Rust</a> and that was extremely fun, and the <a href="https://github.com/serenity-rs/serenity">serenity</a> library is an amazing wrapper for the Rust API.</p>
+<p>Before that, as a tiny initial project, I made a tiny CLI tool for shortening links, called <a href="https://github.com/ibra/snippy">snippy</a>.</p>
+<p>I also plan to use Rust in some performance-critical application because Rust in general is kinda zooming, <a href="https://kornel.ski/rust-c-speed">sometimes outperforming even C if optimized</a>.</p>
+<h2 id="why">...Why?</h2>
+<p>So... why should you even Rust? In my case it was just because I wanted to try something that everyone who used seemed to absolutely love, and I wanted to see what the hype was about.</p>
+<p>But truth be told, Rust, even in the <em>relatively</em> early stages it is in, has a lot of uses. Something i've seen it be amazing at is command-line tools, streamlining the process even more with its direct compilation to an executable.</p>
+<p>Anything that's supposed to be memory-safe and/or concurrent should definitely consider Rust as an option, as that's what it excels at.</p>
+<p>On top of that, like i said at the start, WebAssembly is taking off, and fast. It promises faster web applications and is supported in all major browsers including Apple, Google, Microsoft, and Mozilla. It can become a compilation target for languages, and Rust was actually one of the early targeters to WebAssembly and can directly compile to WebAssembly without the need for extra tools.</p>
+<p>It's not like this is experimental either, tons of great frameworks like <a href="https://rocket.rs/">Rocket</a> and <a href="https://actix.rs/">Actix</a> exist and are mature frameworks ready to be used in production.</p>
+<p>Rust also has its uses in game development with the emergence of engines like <a href="https://www.bevy.com/">Bevy</a>, but I personally wouldnt recommend it for production beyond experimenting and prototyping or the occasional game jam game, having dabbled in it a bit.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>So yeah that was about it, Rust is very epic, bunch of uses, and even if you have none its just extremely fun to dabble in. So go try it. <a href="https://www.rust-lang.org/learn/get-started">Now</a>.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">More from me</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://ibra.github.io/ibreview-arcane/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Arcane Season 1: Redefining Videogame Adaptations</span>
+                        </a>
+                    </span>
+                
+                
+                    <span class="button next">
+                        <a href="https://ibra.github.io/yourshot-save-points/">
+                            <span class="button__text">How I Added Save Points to YourShot</span>&nbsp;
+                            <span class="button__icon">→</span>
+                        </a>
+                    </span>
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">©&nbsp;2022&nbsp; <a href="https://github.com/ibra"><b>Ibrahim Hisham</b></a>|&nbsp;<a href="https://www.getzola.org/">Zola</a>&nbsp;is&nbsp;epic 🧡</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
